@@ -1,9 +1,9 @@
 ## RainChallenge
 
 This project was created using maven, java and the framework Serenity BDD.
-It is using Page Object Model
-The test are writen using Gherkin
-The data is taken from JSON files
+- It is using Page Object Model
+- The test are writen using Gherkin
+- The data is taken from JSON files
 
 The test involves the blog features required:
 - Main screen(https://rain.us/blog) posts list

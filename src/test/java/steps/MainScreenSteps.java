@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import utils.Util;
 import utils.Variables;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

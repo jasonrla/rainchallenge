@@ -11,6 +11,7 @@ import utils.Util;
 import utils.Variables;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class MainScreenSteps {
     @Step
     public void navigateToMainScreen() throws IOException, ParseException {
         mainScreenPage.open();
-        Variables.jsonObject = util.extractFromJSONFile(Variables.path);
+        Variables.jsonObject = util.extractFromJSONFile(Variables.MainScreenPath);
     }
 
     public void checkTheTitleOfTheWeb() {
@@ -36,7 +37,7 @@ public class MainScreenSteps {
 
     public void checkTheNumberOfPostThatTheUserShouldSee() {
         List<WebElement> elements = mainScreenPage.getAllTitles();
-        Assert.assertEquals(Variables.jsonObject.get("visiblePosts").toString(),String.valueOf(elements.size()));
+        Assert.assertEquals(Variables.jsonObject.get("visiblePosts").toString(), String.valueOf(elements.size()));
     }
 
     public void checkThatThePostsShownAreThoseDetailedInTheArticlesFile() {
@@ -50,6 +51,14 @@ public class MainScreenSteps {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
+        List<String> hrefs = new ArrayList<>();
+        for (WebElement element : titles) {
+            String href = element.getAttribute("href");
+            if (href != null && !href.isEmpty()) {
+                hrefs.add(href);
+            }
+        }
+
         List<WebElement> authorPublicationDateAndReadingTime = mainScreenPage.getAllauthorPublicationDateAndReadingTime();
         List<String> actualPublicationsAndReadingTime = authorPublicationDateAndReadingTime.stream()
                 .map(WebElement::getText)
@@ -57,11 +66,13 @@ public class MainScreenSteps {
 
         Variables.postsList = (JSONArray) Variables.jsonObject.get("posts");
 
-        for (int i = 0;i<Variables.postsList.size(); i++){
+        for (int i = 0; i < Variables.postsList.size(); i++) {
             JSONObject post = (JSONObject) Variables.postsList.get(i);
             Assert.assertEquals(post.get("category"), actualCategories.get(i));
             Assert.assertEquals(post.get("title"), actualTitles.get(i));
-            Assert.assertEquals(post.get("author")+"\n"+post.get("publicationDate")+"\n"+post.get("readingTime"), actualPublicationsAndReadingTime.get(i));
+            Assert.assertEquals(post.get("author") + "\n" + post.get("publicationDate") + "\n" + post.get("readingTime"), actualPublicationsAndReadingTime.get(i));
+            Assert.assertEquals(post.get("link"), hrefs.get(i));
         }
     }
 }
+

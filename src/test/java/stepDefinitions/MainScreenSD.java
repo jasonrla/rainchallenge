@@ -34,4 +34,5 @@ public class MainScreenSD {
     public void checkThatThePostsShownAreThoseDetailedInTheArticlesFile() {
         mainScreenSteps.checkThatThePostsShownAreThoseDetailedInTheArticlesFile();
     }
+
 }

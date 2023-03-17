@@ -8,7 +8,10 @@ import java.util.List;
 public class Variables {
 
     public static final String user = "jason.lopez";
-    public static String path = "src/test/resources/payloads/Articles.json";
+    public static String MainScreenPath = "src/test/resources/data/MainScreen.json";
+    public static String PostDetailsPath = "src/test/resources/data/PostDetails.json";
+    public static String CategoryDetailsPath = "src/test/resources/data/CategoryDetails.json";
+    public static String SearchPath = "src/test/resources/data/Search.json";
 
     public static JSONObject jsonObject;
     public static String category;

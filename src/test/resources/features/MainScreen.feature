@@ -1,5 +1,6 @@
 Feature: Main Screen
 
+  @MainScreen
   Scenario: Check posts in Rain's blog
     Given that a user goes to the rain's blog
     When the main page is shown

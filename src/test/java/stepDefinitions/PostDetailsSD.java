@@ -38,4 +38,6 @@ public class PostDetailsSD {
     public void checkTheLinksInCertainWordsOfTheParagraph() {
         postDetailsSteps.checkTheLinksInCertainWordsOfTheParagraph();
     }
+
+
 }
